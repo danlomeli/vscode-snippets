@@ -24,9 +24,18 @@
 			"\t\trst : IN STD_LOGIC;",
 			"\t\t${2:data_in} : IN STD_LOGIC_VECTOR(depth-1 DOWNTO 0);",
 			"\t\t${3:data_out} : OUT STD_LOGIC_VECTOR(depth-1 DOWNTO 0);",
-			"\nEND;"
+			"END;"
 		],
-		"description": "Enabled ENTITY block with enable"
+		"description": "Generic ENTITY template"
+	},
+	"ENTITY2": {
+		"prefix": "ENTITY EMPTY",
+		"body": [
+			"ENTITY ${1:entity_name} IS",
+			"\tPORT;",
+			"END;"
+		],
+		"description": "Empty ENTITY block"
 	},
 	"ARCHITECTURE": {
 		"prefix": "ARCHITECTURE",
@@ -42,8 +51,8 @@
 	"LIBRARY": {
 		"prefix": "LIBRARY",
 		"body": [
-			"LIBRARY ${1:ieee};",
-			"USE ${1:ieee}.${2:std_logic_1164}.all;"
+			"LIBRARY ${1:IEEE};",
+			"USE ${1:IEEE}.${2:std_logic_1164}.all;"
 		],
 		"description": "LIBRARY"
 	},
@@ -179,5 +188,26 @@
 			"\t  \"Z--\" WHEN OTHERS;",
 		],
 		"description": "Create WHEN SELECT mux"
+	},
+	"FOR": {
+		"prefix": ">FOR",
+		"body": [
+			"FOR i IN 0 TO 5 LOOP",
+			"\tx(i) <= a(i) AND b(5-i);",
+			"\ty(0, i) <= c(i);",
+			"END LOOP;",			
+		],
+		"description": "Create a for loop"
+	},
+	"CASE": {
+		"prefix": ">CASE",
+		"body": [
+			"CASE control IS  -- create combinational in a PROCESS",
+			"\tWHEN \"000\" => x<=a; y<=b;",
+			"\tWHEN \"000\" | \"111\" => x<=b; y<= '0';",
+			"\tWHEN OTHERS => x<='0'; y<='1';",
+			"END CASE;",						
+		],
+		"description": "Create a case"
 	}
 }
