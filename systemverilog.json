@@ -114,7 +114,7 @@
   			"timeprecision 10fs;",
 			"",
 			"endmodule",
-			"`end_keywords"
+			"`end_keywords: $1"
 		],
 		"description": "Boilerplate module Template"
 	},
