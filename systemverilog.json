@@ -116,6 +116,17 @@
 		],
 		"description": "Boilerplate module Template"
 	},
+	
+	"initial": {
+		"prefix": "initial",
+		"body": [
+			"initial begin",
+			"	clk <= 0;",
+			"	forever #4 clk = ~clk",
+  			"end",
+		],
+		"description": "Boilerplate module Template"
+	},
 
 	"repeat": {
 		"prefix": "repeat",
