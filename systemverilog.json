@@ -104,13 +104,13 @@
 	"module": {
 		"prefix": "module",
 		"body": [
-			
-			"`include \"defines.v\"",
 			"",
 			"module $1(",
 			"               input            clk,",
 			"               input            reset_n",
 			");",
+			"timeunit 100ps;",
+  			"timeprecision 10fs;",
 			"",
 			"endmodule"
 		],
