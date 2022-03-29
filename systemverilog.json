@@ -104,6 +104,7 @@
 	"module": {
 		"prefix": "module",
 		"body": [
+			"`begin_keywords \"1364-2001\"   // use Verilog-2001 keywords",
 			"",
 			"module $1(",
 			"               input            clk,",
@@ -112,7 +113,8 @@
 			"timeunit 100ps;",
   			"timeprecision 10fs;",
 			"",
-			"endmodule"
+			"endmodule",
+			"`end_keywords"
 		],
 		"description": "Boilerplate module Template"
 	},
