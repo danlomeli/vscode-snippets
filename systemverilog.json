@@ -72,8 +72,8 @@
 			"always @*",
 			"  casez({state, en0, en1, en2})",
 			"    {IDLE, 3'b1??} : state_nxt = RUN;",
-			"    {RUN, 3'b?1?} : state_nxt  = END;",
-			"    {RUN, 3'b??1} : state_nxt  = IDLE;",
+			"    {RUN, 3'b01?} : state_nxt  = END;",
+			"    {RUN, 3'b001} : state_nxt  = IDLE;",
 			"    default       state_nxt = state;",
 			"  endcase"
 		],
