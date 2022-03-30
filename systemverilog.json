@@ -129,6 +129,18 @@
 		],
 		"description": "Boilerplate module Template"
 	},
+	
+	
+	"package": {
+		"prefix": "package",
+		"body": [
+			"package $1",
+			"	localparam VERSION = \"1.1\";",
+			"",
+  			"endpackage: $1",
+		],
+		"description": "Boilerplate module Template"
+	},
 
 	"repeat": {
 		"prefix": "repeat",
