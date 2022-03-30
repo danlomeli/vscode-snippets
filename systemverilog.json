@@ -134,10 +134,13 @@
 	"package": {
 		"prefix": "package",
 		"body": [
-			"package $1",
-			"	localparam VERSION = \"1.1\";",
+			"`ifndef $1_PKG",
+			"`define $1_PKG",
+			"	package $2",
+			"		localparam VERSION = \"1.1\";",
 			"",
-  			"endpackage: $1",
+  			"	endpackage: $2",
+			"`endif"
 		],
 		"description": "Boilerplate module Template"
 	},
