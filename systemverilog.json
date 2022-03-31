@@ -18,7 +18,10 @@
 		"body": [
 			"logic $1;",
 			"",
-			"always_ff @(posedge clk) if ($2) $1 <= $3;"
+			"always_ff @(posedge clk) begin",
+			"	if ($2)",
+			"		$1 <= $3;",
+			"end"
 		],
 		"description": "Enabled always block with enable"
 	},
@@ -28,7 +31,9 @@
 		"body": [
 			"logic $1;",
 			"",
-			"always_ff @(posedge clk) $1 <= $2;"
+			"always_ff @(posedge clk) begin", 
+			"	$1 <= $2;",
+			"end"
 		],
 		"description": "Enabled always block without enable"
 	},
@@ -38,7 +43,12 @@
 		"body": [
 			"logic $1;",
 			"",
-			"always_ff @(posedge clk or negedge reset_n) if (!reset_n) $1 <= 0; else if ($2) $1 <= $3;"
+			"always_ff @(posedge clk or negedge reset_n) begin",
+			"	if (!reset_n)",
+			"		$1 <= 0;",
+			"	else if ($2)", 
+			"   		$1 <= $3;",
+			"end"
 		
 		],
 		"description": "Asynchronous always block with enabled"
@@ -49,7 +59,12 @@
 		"body": [
 			"logic $1;",
 			"",
-			"always_ff @(posedge clk or negedge reset_n) if (!reset_n) $1 <= 0; else $1 <= $2;"
+			"always_ff @(posedge clk or negedge reset_n) begin",
+			"	if (!reset_n)",
+			"		$1 <= 0;",
+			"	else",
+			"		$1 <= $2;",
+			"end"
 		
 		],
 		"description": "Asynchronous Reset wo Enabled always block"
@@ -58,24 +73,26 @@
 	"fsm": {
 		"prefix": "fsm",
 		"body": [
-			"localparam IDLE = 5'b1_0_10_0;",
-			"localparam RUN  = 5'b1_1_01_0;",
-			"localparam END  = 5'b0_1_00_0;",
+			"typedef enum logic {IDLE = 5'b1_0_10_0,",
+			"                    RUN  = 5'b1_1_01_0,",
+			"                    END  = 5'b0_1_00_0} states_t;",
 			"",
 			"logic en0, en1, en2;",
-			"logic [4:0]   state, state_nxt;",
+			"states_t   state, state_nxt;",
 			"",
 			"always_ff @(posedge clk or negedge reset_n)",
 			"  if (!reset_n) state <= IDLE;",
 			"  else          state <= state_nxt;",
 			"",
-			"always @*",
-			"  casez({state, en0, en1, en2})",
-			"    {IDLE, 3'b1??} : state_nxt = RUN;",
-			"    {RUN, 3'b01?} : state_nxt  = END;",
-			"    {RUN, 3'b001} : state_nxt  = IDLE;",
+			"always_comb begin",
+			"  // state_nxt = IDLE; // Uncomment if default is not used",
+			"  case({state, en0, en1, en2})",
+			"    {IDLE, 3'b1xx} : state_nxt = RUN;",
+			"    {RUN, 3'b01x}  : state_nxt  = END;",
+			"    {RUN, 3'b001}  : state_nxt  = IDLE;",
 			"    default       state_nxt = state;",
-			"  endcase"
+			"  endcase",
+			"end",
 		],
 		"description": "Synchronous Moore State Machine"
 	},
@@ -98,7 +115,7 @@
 			"// $Revision:   $",
 			"//-----------------------------------------------------------------------------"
 		],
-		"description": "Boilerplate Header Template"
+		"description": "Boilerplate header Template"
 	},
 
 	"module": {
@@ -127,9 +144,8 @@
 			"	forever #4 clk = ~clk",
   			"end",
 		],
-		"description": "Boilerplate module Template"
+		"description": "Boilerplate simulation initial Template"
 	},
-	
 	
 	"package": {
 		"prefix": "package",
@@ -142,7 +158,17 @@
   			"	endpackage: $2",
 			"`endif"
 		],
-		"description": "Boilerplate module Template"
+		"description": "Boilerplate package Template"
+	},
+	
+	"typedef": {
+		"prefix": "typedef",
+		"body": [
+			"typedef enum logic [2:0] {WAITE = 3'b001,",
+			"			   LOAD  = 3'b010,",
+			"                          READY = 3'b100} states_t;"
+		],
+		"description": "Boilerplate typedef Template"
 	},
 
 	"repeat": {
@@ -151,7 +177,7 @@
 			
 			"repeat ($1) @(posedge clk);"
 		],
-		"description": "Boilerplate module Template"
+		"description": "Boilerplate simulation repeat Template"
 	}
 		
 }
