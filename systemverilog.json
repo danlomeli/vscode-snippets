@@ -175,6 +175,7 @@
 		"prefix": "struct",
 		"body": [
 			"// Name of the structure, followed by a period ( . ) and then the name of the member",
+			"// Ex. Assignment instruction_word <= `{opcode:NOP, default:0};",
 			"",
 			"struct {",
 			"    int a, b; // 32-bit 2-state variables",
