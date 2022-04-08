@@ -174,11 +174,11 @@
 	"struct": {
 		"prefix": "struct",
 		"body": [
-			"typedef enum logic [2:0] {NOP, ADD, SUB, MULT, DIV} opcode_t;",
+			"// Name of the structure, followed by a period ( . ) and then the name of the member",
 			"",
 			"struct {",
 			"    int a, b; // 32-bit 2-state variables",
-			"    opcode_t opcode; // user-defined type",
+			"    // opcode_t opcode; // Ex. // typedef enum logic [2:0] {NOP, ADD, SUB, MULT, DIV} opcode_t;",
 			"    logic [23:0] address; // 24-bit variable",
                         "    bit error; // 1-bit 2-state variable",
 			"} instruction word;"
