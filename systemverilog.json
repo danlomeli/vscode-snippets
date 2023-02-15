@@ -100,10 +100,9 @@
 	"header": {
 		"prefix": "header",
 		"body": [
-			"// Copyright (c) 2019 by Microsoft",
 			"//",
 			"// File:        ${1:default}.sv",
-			"// Author:      v-dalome",
+			"// Author:      Daniel Lomeli",
 			"//",
 			"// Description: ${3:default}",
 			"// ",
